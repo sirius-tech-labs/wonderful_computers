@@ -27,7 +27,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
     message += `*Name:* ${order.customerName}%0A`;
     message += `*Total:* ${formatPrice(order.totalAmount)}%0A%0A`;
     message += `I just placed an order. Please confirm availability.`;
-    
+
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
 
@@ -36,7 +36,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
       <div className="bg-white w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
         {/* Success Header */}
         <div className="bg-green-600 p-8 text-white text-center relative">
-          <button 
+          <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition"
           >
@@ -51,7 +51,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
 
         {/* Action Buttons */}
         <div className="p-6 bg-gray-50 border-b border-gray-100 flex flex-col gap-4">
-          <button 
+          <button
             onClick={openWhatsApp}
             className="w-full bg-green-600 text-white py-5 px-6 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 transition active:scale-95 text-xl"
           >
@@ -64,8 +64,8 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
           <div className="text-center mb-4">
             <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Invoice Preview</p>
           </div>
-          
-          <div 
+
+          <div
             ref={invoiceRef}
             className="bg-white p-10 shadow-sm mx-auto max-w-[210mm] text-gray-800 font-sans"
             style={{ minHeight: '297mm' }}
@@ -151,15 +151,15 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
             <div className="mt-auto pt-12 border-t border-gray-100 text-center">
               <p className="text-sm font-black text-gray-900 mb-2 italic">Thank you for choosing Info-Fix Tech!</p>
               <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-relaxed">
-                Please keep this invoice for your records. Delivery will be processed within 24-48 hours after payment verification. 
-                For support, contact us on WhatsApp: +234 909 008 5555.
+                Please keep this invoice for your records. Delivery will be processed within 24-48 hours after payment verification.
+                For support, contact us on WhatsApp: +234 813 362 0282.
               </p>
             </div>
           </div>
         </div>
-        
+
         <div className="p-6 bg-white text-center">
-          <button 
+          <button
             onClick={onClose}
             className="text-gray-400 hover:text-tech-blue font-black uppercase text-xs tracking-widest transition"
           >
