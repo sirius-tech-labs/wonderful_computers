@@ -60,7 +60,7 @@ const Header: React.FC = () => {
               <div className="w-10 h-10 bg-tech-blue rounded flex items-center justify-center">
                 <span className="text-white font-black text-xl italic">WC</span>
               </div>
-              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Wonderful Computers <span className="text-gray-400">Laptop</span></span>
+              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Wonderful Computers</span>
             </Link>
 
             {/* Global Search Bar */}

@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
             <div className="w-10 h-10 bg-white rounded flex items-center justify-center">
               <span className="text-tech-blue font-black text-xl italic">WC</span>
             </div>
-            <span className="text-white font-extrabold text-xl tracking-tight">Wonderful Computers <span className="text-blue-300">Laptop</span></span>
+            <span className="text-white font-extrabold text-xl tracking-tight">Wonderful Computers</span>
           </div>
           <p className="text-blue-100 text-sm leading-relaxed mb-6">
             Premium Nigerian electronics retailer specializing in affordable UK-used and new laptops. We prioritize reliability, trust, and exceptional nationwide delivery.
