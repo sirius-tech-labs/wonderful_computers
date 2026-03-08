@@ -108,7 +108,7 @@ const Home: React.FC = () => {
   return (
     <div className="space-y-12 md:space-y-24 pb-20 overflow-x-hidden">
       <Helmet>
-        <title>Wonderful Computers | Premium UK-Used Laptops in Nigeria</title>
+        <title>Wonderful Computers | Premium Tech Store Nigeria</title>
         <meta name="description" content="Buy affordable, high-quality UK-used and new laptops in Nigeria. Nationwide delivery, tested hardware, and trusted service in Ikeja Computer Village." />
       </Helmet>
       {/* Hero Section */}

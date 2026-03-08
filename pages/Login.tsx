@@ -35,7 +35,6 @@ const Login: React.FC = () => {
                     </div>
                     <div className="text-left">
                         <p className="font-black text-2xl text-tech-blue leading-none">Wonderful Computers</p>
-                        <p className="text-gray-400 font-bold text-sm">Laptop Store</p>
                     </div>
                 </div>
 

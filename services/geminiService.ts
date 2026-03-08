@@ -46,7 +46,7 @@ export const getLaptopRecommendation = async (
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash',
-      contents: `You are a friendly and knowledgeable laptop sales expert at Wonderful Computers Laptop Store in Nigeria.
+      contents: `You are a friendly and knowledgeable laptop sales expert at Wonderful Computers in Nigeria.
 
 Available inventory (JSON):
 ${JSON.stringify(slimInventory)}
