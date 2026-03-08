@@ -1,7 +1,7 @@
 
 import { Category, Laptop, Testimonial } from './types';
 
-export const WHATSAPP_NUMBER = "2348133620282";
+export const WHATSAPP_NUMBER = "2349090085555";
 export const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/.../viewform";
 
 // Reliable Unsplash IDs for laptops

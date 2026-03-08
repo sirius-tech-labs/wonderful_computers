@@ -152,7 +152,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
               <p className="text-sm font-black text-gray-900 mb-2 italic">Thank you for choosing Wonderful Computers!</p>
               <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-relaxed">
                 Please keep this invoice for your records. Delivery will be processed within 24-48 hours after payment verification.
-                For support, contact us on WhatsApp: +234 813 362 0282.
+                For support, contact us on WhatsApp: +234 909 008 5555.
               </p>
             </div>
           </div>
