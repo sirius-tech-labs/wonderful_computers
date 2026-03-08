@@ -11,7 +11,7 @@ import { useCart } from '../context/CartContext';
 const Shop: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialSearch = searchParams.get('q') || '';
-  
+
   const [activeCategory, setActiveCategory] = useState<Category | 'All'>('All');
   const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [sortBy, setSortBy] = useState<'default' | 'priceAsc' | 'priceDesc'>('default');
@@ -29,15 +29,15 @@ const Shop: React.FC = () => {
     const searchLower = searchTerm.toLowerCase();
     return inventory.filter(l => {
       const matchesCat = activeCategory === 'All' || l.category === activeCategory;
-      
+
       // Improved search logic: check name, specs, brand, and category
-      const matchesSearch = 
-        l.name.toLowerCase().includes(searchLower) || 
+      const matchesSearch =
+        l.name.toLowerCase().includes(searchLower) ||
         l.specs.toLowerCase().includes(searchLower) ||
         l.brand.toLowerCase().includes(searchLower) ||
         l.category.toLowerCase().includes(searchLower) ||
         l.description?.toLowerCase().includes(searchLower);
-        
+
       return matchesCat && matchesSearch;
     }).sort((a, b) => {
       if (sortBy === 'priceAsc') return a.price - b.price;
@@ -49,7 +49,7 @@ const Shop: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <Helmet>
-        <title>Shop Laptops | Info-Fix Laptop Nigeria Catalog</title>
+        <title>Shop Laptops | Wonderful Computers Nigeria Catalog</title>
         <meta name="description" content="Browse our wide range of UK-used and new laptops. Filter by category: Student, Business, Gaming, and more. Best prices in Nigeria." />
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
@@ -57,20 +57,20 @@ const Shop: React.FC = () => {
           <h1 className="text-4xl font-black text-gray-900">Explore Our Catalog</h1>
           <p className="text-gray-500 mt-2">Find the best laptop that fits your budget.</p>
         </div>
-        
+
         <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
           <div className="relative">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Search laptops..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-tech-blue outline-none w-full md:w-64 transition-all text-gray-900"
             />
-            {searchTerm && <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><X size={16}/></button>}
+            {searchTerm && <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><X size={16} /></button>}
           </div>
-          <select 
+          <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
             className="py-3 px-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-tech-blue outline-none font-medium text-gray-900 transition-all"
@@ -86,7 +86,7 @@ const Shop: React.FC = () => {
         {/* Sidebar Filters */}
         <aside className="lg:w-64 flex-shrink-0">
           <div className="bg-white p-4 lg:p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-32">
-            <button 
+            <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className="w-full flex items-center justify-between lg:hidden mb-0"
             >
@@ -110,17 +110,16 @@ const Shop: React.FC = () => {
                     setActiveCategory(cat as any);
                     setIsFilterOpen(false); // Contract the drawdown
                   }}
-                  className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold transition ${
-                    activeCategory === cat 
-                      ? 'bg-tech-blue text-white shadow-md' 
+                  className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold transition ${activeCategory === cat
+                      ? 'bg-tech-blue text-white shadow-md'
                       : 'text-gray-600 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
               ))}
             </div>
-            
+
             <div className={`${isFilterOpen ? 'block' : 'hidden'} lg:block`}>
               <div className="mt-10 bg-blue-50 p-4 rounded-xl">
                 <p className="text-xs font-bold text-tech-blue uppercase tracking-wider mb-2">Need help choosing?</p>
@@ -168,8 +167,8 @@ const Shop: React.FC = () => {
               <SearchIcon size={48} className="mx-auto text-gray-300 mb-4" />
               <h3 className="text-xl font-bold text-gray-900">No laptops found</h3>
               <p className="text-gray-500">Try adjusting your filters or search term.</p>
-              <button 
-                onClick={() => {setActiveCategory('All'); setSearchTerm('');}}
+              <button
+                onClick={() => { setActiveCategory('All'); setSearchTerm(''); }}
                 className="mt-6 text-tech-blue font-bold underline"
               >
                 Clear all filters

@@ -266,9 +266,9 @@ export const LAPTOPS: Laptop[] = [
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
-  { id: '1', name: 'Tunde Adebayo', location: 'Lagos', text: 'Info-Fix delivered my HP EliteBook to Ikeja within 24 hours. The condition was exactly as described. Clean UK-used machine!', rating: 5 },
+  { id: '1', name: 'Tunde Adebayo', location: 'Lagos', text: 'Wonderful Computers delivered my HP EliteBook to Ikeja within 24 hours. The condition was exactly as described. Clean UK-used machine!', rating: 5 },
   { id: '2', name: 'Chioma Okeke', location: 'Abuja', text: 'Bought a ThinkPad for my coding bootcamp. Reliable service and the price was the best I found in Nigeria. No issues.', rating: 5 },
-  { id: '3', name: 'Musa Ibrahim', location: 'Port Harcourt', text: 'Was worried about delivery but the packaging was very secure. Laptop arrived in perfect state. Highly trust Info-Fix.', rating: 5 },
+  { id: '3', name: 'Musa Ibrahim', location: 'Port Harcourt', text: 'Was worried about delivery but the packaging was very secure. Laptop arrived in perfect state. Highly trust Wonderful Computers.', rating: 5 },
 ];
 
 export const formatPrice = (price: number) => {

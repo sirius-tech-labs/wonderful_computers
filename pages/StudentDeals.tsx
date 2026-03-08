@@ -20,8 +20,8 @@ const StudentDeals: React.FC = () => {
             Get high-performance laptops tested for academic excellence. From Zoom classes to complex assignments, we've got you covered with budget-friendly prices.
           </p>
           <div className="flex gap-4 flex-wrap">
-            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-xl border border-white/20"><BookOpen size={18}/> <span>Free Support</span></div>
-            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-xl border border-white/20"><Award size={18}/> <span>Verified UK-Used</span></div>
+            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-xl border border-white/20"><BookOpen size={18} /> <span>Free Support</span></div>
+            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-xl border border-white/20"><Award size={18} /> <span>Verified UK-Used</span></div>
           </div>
         </div>
         <div className="absolute right-0 bottom-0 opacity-20 -mr-10 -mb-10 transform -rotate-12 hidden lg:block">
@@ -30,8 +30,8 @@ const StudentDeals: React.FC = () => {
       </div>
 
       <div className="mb-12">
-          <h2 className="text-3xl font-black text-gray-900 mb-2">Recommended for School</h2>
-          <p className="text-gray-500">Laptops that balance performance and portability perfectly.</p>
+        <h2 className="text-3xl font-black text-gray-900 mb-2">Recommended for School</h2>
+        <p className="text-gray-500">Laptops that balance performance and portability perfectly.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -39,9 +39,9 @@ const StudentDeals: React.FC = () => {
           <ProductCard key={laptop.id} laptop={laptop} />
         ))}
       </div>
-      
+
       <div className="mt-20 bg-gray-50 border border-gray-100 rounded-3xl p-10 text-center">
-        <h3 className="text-2xl font-black mb-4 italic">Join the Info-Fix Community</h3>
+        <h3 className="text-2xl font-black mb-4 italic">Join the Wonderful Computers Community</h3>
         <p className="text-gray-600 mb-8 max-w-xl mx-auto">
           We've helped over 5,000 Nigerian students get reliable laptops for their studies. Your academic success starts with the right tool.
         </p>

@@ -31,7 +31,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('infofix_cart');
+    const saved = localStorage.getItem('wonderful_cart');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -46,8 +46,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Load initial IDs from localStorage
   useEffect(() => {
-    const savedRecentIds = localStorage.getItem('infofix_recent_ids');
-    const savedWishlistIds = localStorage.getItem('infofix_wishlist_ids');
+    const savedRecentIds = localStorage.getItem('wonderful_recent_ids');
+    const savedWishlistIds = localStorage.getItem('wonderful_wishlist_ids');
 
     if (inventory.length > 0) {
       if (savedRecentIds) {
@@ -94,12 +94,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     refreshInventory();
     // Clean up any stale inventory cache from localStorage.
     // Old versions wrote large base64 images here, which caused QuotaExceededError on mobile.
-    localStorage.removeItem('infofix_inventory');
+    localStorage.removeItem('wonderful_inventory_cache');
   }, [refreshInventory]);
 
   useEffect(() => {
     try {
-      localStorage.setItem('infofix_cart', JSON.stringify(cart));
+      localStorage.setItem('wonderful_cart', JSON.stringify(cart));
     } catch (e) {
       console.error('Failed to save cart to localStorage:', e);
     }
@@ -108,7 +108,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const ids = recentlyViewed.map(l => l.id);
-      localStorage.setItem('infofix_recent_ids', JSON.stringify(ids));
+      localStorage.setItem('wonderful_recent_ids', JSON.stringify(ids));
     } catch (e) {
       console.error('Failed to save recently viewed IDs to localStorage:', e);
     }
@@ -117,7 +117,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const ids = wishlist.map(l => l.id);
-      localStorage.setItem('infofix_wishlist_ids', JSON.stringify(ids));
+      localStorage.setItem('wonderful_wishlist_ids', JSON.stringify(ids));
     } catch (e) {
       console.error('Failed to save wishlist IDs to localStorage:', e);
     }

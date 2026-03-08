@@ -58,9 +58,9 @@ const Header: React.FC = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 flex-shrink-0">
               <div className="w-10 h-10 bg-tech-blue rounded flex items-center justify-center">
-                <span className="text-white font-black text-xl italic">IF</span>
+                <span className="text-white font-black text-xl italic">WC</span>
               </div>
-              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Info-Fix <span className="text-gray-400">Laptop</span></span>
+              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Wonderful Computers <span className="text-gray-400">Laptop</span></span>
             </Link>
 
             {/* Global Search Bar */}

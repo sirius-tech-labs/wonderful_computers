@@ -14,7 +14,7 @@ const BulkOrders: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
         <div>
-          <h2 className="text-3xl font-black mb-8">Why Choose Info-Fix for Bulk Supply?</h2>
+          <h2 className="text-3xl font-black mb-8">Why Choose Wonderful Computers for Bulk Supply?</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
               <div className="bg-blue-100 p-3 rounded-2xl text-tech-blue h-fit"><Building2 size={24} /></div>
@@ -39,7 +39,7 @@ const BulkOrders: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100">
           <h3 className="text-2xl font-black mb-6">Request a Bulk Quote</h3>
           <form className="space-y-4">

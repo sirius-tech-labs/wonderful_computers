@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `*NEW ORDER FROM INFO-FIX LAPTOP*%0A%0A`;
+    let message = `*NEW ORDER FROM WONDERFUL COMPUTERS*%0A%0A`;
     message += `*--- CUSTOMER INFO ---*%0A`;
     message += `*Name:* ${formData.name}%0A`;
     message += `*Address:* ${formData.fullAddress}%0A`;
@@ -91,8 +91,8 @@ const Cart: React.FC = () => {
 
     // 1. Save to local storage immediately
     try {
-      const existingOrders = JSON.parse(localStorage.getItem('infofix_orders') || '[]');
-      localStorage.setItem('infofix_orders', JSON.stringify([newOrder, ...existingOrders]));
+      const existingOrders = JSON.parse(localStorage.getItem('wonderful_orders') || '[]');
+      localStorage.setItem('wonderful_orders', JSON.stringify([newOrder, ...existingOrders]));
     } catch (err) {
       console.error('Local storage save failed:', err);
     }

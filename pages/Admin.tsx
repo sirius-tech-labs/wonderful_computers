@@ -153,7 +153,7 @@ const Admin: React.FC = () => {
         setOrders(data || []);
       } catch (error) {
         console.error('Error fetching orders:', error);
-        const saved = localStorage.getItem('infofix_orders');
+        const saved = localStorage.getItem('wonderful_orders');
         setOrders(saved ? JSON.parse(saved) : []);
       } finally {
         setIsOrdersLoading(false);
@@ -165,7 +165,7 @@ const Admin: React.FC = () => {
 
   useEffect(() => {
     if (orders.length > 0) {
-      localStorage.setItem('infofix_orders', JSON.stringify(orders));
+      localStorage.setItem('wonderful_orders', JSON.stringify(orders));
     }
   }, [orders]);
 
@@ -202,7 +202,7 @@ const Admin: React.FC = () => {
       detailedSpecs,
       specs: newLaptop.specs || autoShortSpec,
       originalPrice: newLaptop.originalPrice || (newLaptop.price ? Math.round(newLaptop.price * 1.25) : 0),
-      description: `Premium ${newLaptop.condition} ${newLaptop.name}. Tested and verified by Info-Fix engineers for the Nigerian market. Ready for immediate delivery.`
+      description: `Premium ${newLaptop.condition} ${newLaptop.name}. Tested and verified by Wonderful Computers engineers for the Nigerian market. Ready for immediate delivery.`
     } as Laptop;
 
     addInventoryItem(laptopToAdd);

@@ -73,8 +73,8 @@ const ProductCard: React.FC<{ laptop: Laptop }> = ({ laptop }) => {
         <button
           onClick={handleAddToCart}
           className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-black text-xs transition-all active:scale-95 ${added
-              ? 'bg-green-500 text-white'
-              : 'bg-tech-blue text-white hover:bg-blue-900'
+            ? 'bg-green-500 text-white'
+            : 'bg-tech-blue text-white hover:bg-blue-900'
             }`}
         >
           <ShoppingCart size={13} />
@@ -97,7 +97,7 @@ const Finder: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'bot',
-      text: 'Hello! 👋 I\'m your Info-Fix AI Laptop Advisor. Tell me what you need and I\'ll find the perfect laptop from our store — with prices in Naira and nationwide delivery across Nigeria!',
+      text: 'Hello! 👋 I\'m your Wonderful Computers AI Laptop Advisor. Tell me what you need and I\'ll find the perfect laptop from our store — with prices in Naira and nationwide delivery across Nigeria!',
     }
   ]);
 
@@ -183,8 +183,8 @@ const Finder: React.FC = () => {
               <div className={`max-w-[88%] ${m.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-2`}>
                 {/* Message bubble */}
                 <div className={`rounded-2xl p-4 shadow-sm flex gap-2.5 ${m.role === 'user'
-                    ? 'bg-tech-blue text-white rounded-tr-none'
-                    : 'bg-white text-gray-800 rounded-tl-none border border-gray-100'
+                  ? 'bg-tech-blue text-white rounded-tr-none'
+                  : 'bg-white text-gray-800 rounded-tl-none border border-gray-100'
                   }`}>
                   {m.role === 'bot' && <Bot size={16} className="text-tech-blue mt-0.5 flex-shrink-0" />}
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">{m.text}</p>
@@ -233,7 +233,7 @@ const Finder: React.FC = () => {
             </button>
           </div>
           <p className="text-[10px] text-gray-400 mt-2 text-center uppercase tracking-widest font-bold flex items-center justify-center gap-1">
-            <Zap size={10} className="text-tech-blue" /> AI-Powered · Powered by Info-Fix
+            <Zap size={10} className="text-tech-blue" /> AI-Powered · Powered by Wonderful Computers
           </p>
         </div>
       </div>
