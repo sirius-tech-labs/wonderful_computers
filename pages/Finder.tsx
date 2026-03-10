@@ -93,7 +93,7 @@ const ProductCard: React.FC<{ laptop: Laptop }> = ({ laptop }) => {
 };
 
 const Finder: React.FC = () => {
-  const { setIsPullToRefreshDisabled, inventory } = useCart();
+  const { setIsPullToRefreshDisabled, inventory, isInventoryLoading } = useCart();
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'bot',
@@ -178,6 +178,15 @@ const Finder: React.FC = () => {
           ref={scrollRef}
           className="flex-grow overflow-y-auto bg-gray-50 p-4 space-y-4"
         >
+          {isInventoryLoading && inventory.length <= 13 && (
+            <div className="flex justify-start">
+              <div className="bg-white rounded-2xl rounded-tl-none p-4 shadow-sm border border-gray-100 flex items-center gap-2.5">
+                <Loader2 size={16} className="animate-spin text-tech-blue flex-shrink-0" />
+                <span className="text-sm text-gray-500 italic">Connecting to inventory store...</span>
+              </div>
+            </div>
+          )}
+
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[88%] ${m.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-2`}>
