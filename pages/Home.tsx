@@ -11,7 +11,7 @@ import { CategoryCarouselSkeleton, SidebarSkeleton } from '../components/Loading
 
 const CategoryCarousel: React.FC<{ title: string; category: Category }> = ({ title, category }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { inventory } = useCart();
+  const { inventory, isInventoryLoading } = useCart();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
