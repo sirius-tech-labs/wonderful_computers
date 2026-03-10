@@ -39,29 +39,38 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
 
     try {
       setIsDownloading(true);
+
+      // Delay to ensure DOM is ready
+      await new Promise(resolve => setTimeout(resolve, 500));
+
       const canvas = await html2canvas(invoiceRef.current, {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff'
+        logging: true,
+        backgroundColor: '#ffffff',
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        windowWidth: document.documentElement.offsetWidth,
+        windowHeight: document.documentElement.offsetHeight
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/png', 1.0);
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
-        format: 'a4'
+        format: 'a4',
+        compress: true
       });
 
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`Wonderful_Autos_Invoice_${order.id}.pdf`);
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
+      pdf.save(`Wonderful_Autos_Invoice_${order.id.slice(-8)}.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Failed to generate PDF. Please try again.');
+      alert('Failed to generate PDF. Please try again. If it keeps failing, you can take a screenshot of the invoice.');
     } finally {
       setIsDownloading(false);
     }
@@ -100,8 +109,8 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
             onClick={downloadPDF}
             disabled={isDownloading}
             className={`w-full sm:flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-black transition active:scale-95 text-lg shadow-lg ${isDownloading
-                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-tech-blue text-white hover:bg-blue-900 shadow-tech-blue/20'
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              : 'bg-tech-blue text-white hover:bg-blue-900 shadow-tech-blue/20'
               }`}
           >
             {isDownloading ? (
