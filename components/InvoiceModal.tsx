@@ -34,7 +34,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
 
-  const downloadPDF = async () => {
+  const downloadImage = async () => {
     if (!invoiceRef.current) return;
 
     try {
@@ -44,33 +44,28 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
       await new Promise(resolve => setTimeout(resolve, 500));
 
       const canvas = await html2canvas(invoiceRef.current, {
-        scale: 1.5,
+        scale: 2, // High resolution
         useCORS: true,
-        logging: true,
         backgroundColor: '#ffffff',
+        logging: false,
         scrollX: 0,
         scrollY: -window.scrollY,
         windowWidth: document.documentElement.offsetWidth,
         windowHeight: document.documentElement.offsetHeight
       });
 
-      const imgData = canvas.toDataURL('image/png', 1.0);
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-        compress: true
-      });
+      // Convert to JPG and download
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      const link = document.createElement('a');
+      link.href = imgData;
+      link.download = `Wonderful_Autos_Invoice_${order.id.slice(-8)}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
-      pdf.save(`Wonderful_Autos_Invoice_${order.id.slice(-8)}.pdf`);
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('Failed to generate PDF. Please try again. If it keeps failing, you can take a screenshot of the invoice.');
+      console.error('Error generating Image:', error);
+      alert('Failed to save invoice. Please take a screenshot instead.');
     } finally {
       setIsDownloading(false);
     }
