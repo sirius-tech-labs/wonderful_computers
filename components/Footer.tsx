@@ -39,8 +39,34 @@ const Footer: React.FC = () => {
         <div>
           <h4 className="font-bold text-lg mb-6">Contact Us</h4>
           <ul className="space-y-4 text-blue-100 text-sm">
-            <li className="flex items-center gap-3"><MapPin size={18} className="text-blue-300" /> <span>Suite 52,1 Adepele(Blue building), computer village, Ikeja 100212</span></li>
-            <li className="flex items-center gap-3"><Phone size={18} className="text-blue-300" /> <span>+234 909 008 5555</span></li>
+            <li>
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-blue-300 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-bold text-white mb-1">Lagos Address</p>
+                  <p className="text-xs leading-relaxed">Goshen shopping complex, Berger, Lagos</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-blue-300 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-bold text-white mb-1">Osogbo Office</p>
+                  <p className="text-xs leading-relaxed">Wonderful Autos-Tech Limited building, adjacent honesty cooperative, Akindeko market area, Alekuwodo, Osogbo, Osun state</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-blue-300 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-bold text-white mb-1">Ibadan Office</p>
+                  <p className="text-xs leading-relaxed">Lanre shopping complex, beside Wem Bank, along Gbagi market road, Iwo road, Ibadan</p>
+                </div>
+              </div>
+            </li>
+            <li className="flex items-center gap-3 mt-6"><Phone size={18} className="text-blue-300" /> <span>+234 909 008 5555</span></li>
             <li className="flex items-center gap-3"><Mail size={18} className="text-blue-300" /> <span>wonderfulautosandtech@gmail.com</span></li>
           </ul>
         </div>

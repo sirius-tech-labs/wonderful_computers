@@ -122,7 +122,7 @@ const Home: React.FC = () => {
             <div className="max-w-2xl text-white">
               <div className="inline-flex items-center gap-2 bg-blue-500/30 border border-blue-400/30 px-3 md:px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider mb-6 md:mb-8">
                 <Verified size={14} className="text-blue-300" />
-                Trusted in Computer Village, Ikeja since 2015
+                Building Trust, For Over a Decade
               </div>
               <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 leading-[1.1] tracking-tighter">
                 Premium Laptops. <br />
@@ -145,7 +145,7 @@ const Home: React.FC = () => {
               <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-8 opacity-70 flex-wrap">
                 <div className="flex items-center gap-2 text-xs md:text-sm font-bold"><CheckCircle2 size={16} className="text-green-400" /> <span>Pay on Delivery</span></div>
                 <div className="flex items-center gap-2 text-xs md:text-sm font-bold"><CheckCircle2 size={16} className="text-green-400" /> <span>Tested Hardware</span></div>
-                <div className="flex items-center gap-2 text-xs md:text-sm font-bold"><CheckCircle2 size={16} className="text-green-400" /> <span>Ikeja Physical Office</span></div>
+                <div className="flex items-center gap-2 text-xs md:text-sm font-bold"><CheckCircle2 size={16} className="text-green-400" /> <span>Lagos, Osun & Oyo Offices</span></div>
               </div>
             </div>
 
@@ -207,8 +207,8 @@ const Home: React.FC = () => {
                 <div className="flex gap-4 md:gap-6">
                   <div className="bg-blue-500/20 p-3 md:p-4 rounded-2xl md:rounded-3xl h-fit border border-white/5 shadow-inner flex-shrink-0"><MapPin className="text-blue-400" size={28} /></div>
                   <div>
-                    <h4 className="font-black text-lg md:text-xl mb-1">Lagos Physical Store</h4>
-                    <p className="text-blue-100/70 text-xs md:text-sm leading-relaxed">We are not "ghost" sellers. Visit our mega-store in Ikeja Computer Village to see and test before you pay.</p>
+                    <h4 className="font-black text-lg md:text-xl mb-1">Physical Presence in 3 States</h4>
+                    <p className="text-blue-100/70 text-xs md:text-sm leading-relaxed">We are not "ghost" sellers. Visit our mega-stores in Lagos (Berger), Osogbo (Alekuwodo), or Ibadan (Iwo Road) to see and test before you pay.</p>
                   </div>
                 </div>
                 <div className="flex gap-4 md:gap-6">
@@ -251,7 +251,7 @@ const Home: React.FC = () => {
             From Lagos to Abuja, Port Harcourt to Kano. We use secure double-bubble packaging. Your laptop arrives safe or we replace it!
           </p>
           <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-            {['Lagos', 'Abuja', 'Ibadan', 'Port Harcourt', 'Benin', 'Enugu', 'Kaduna', 'Jos'].map(city => (
+            {['Lagos', 'Abuja', 'Ibadan', 'Osogbo', 'Port Harcourt', 'Benin', 'Enugu', 'Kaduna', 'Jos'].map(city => (
               <span key={city} className="bg-white px-4 md:px-8 py-2.5 md:py-4 rounded-xl md:rounded-2xl shadow-sm text-xs md:text-sm font-black text-gray-700 border border-gray-200 uppercase tracking-tighter hover:bg-tech-blue hover:text-white transition cursor-default">
                 {city}
               </span>

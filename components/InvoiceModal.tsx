@@ -80,7 +80,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
                   <span className="text-tech-blue font-black text-2xl tracking-tighter uppercase">Wonderful Autos and Tech</span>
                 </div>
                 <p className="text-sm font-bold text-gray-500">Premium Laptops & Tech Solutions</p>
-                <p className="text-xs text-gray-400 mt-1">Lagos, Nigeria | Nationwide Delivery</p>
+                <p className="text-xs text-gray-400 mt-1">Lagos | Osogbo | Ibadan | Nationwide Delivery</p>
               </div>
               <div className="text-right">
                 <h1 className="text-4xl font-black text-tech-blue uppercase tracking-tighter mb-2">Invoice</h1>
