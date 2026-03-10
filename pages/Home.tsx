@@ -182,47 +182,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Badges - Amazon/Jumia Style */}
-      <section className="max-w-7xl mx-auto px-4 -mt-12 lg:-mt-20 relative z-10">
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100 overflow-hidden">
-          <div className="p-8 flex items-center gap-4 hover:bg-gray-50 transition group">
-            <div className="bg-blue-50 p-3 rounded-2xl text-tech-blue group-hover:scale-110 transition">
-              <Truck size={32} />
-            </div>
-            <div>
-              <h4 className="font-black text-gray-900 uppercase tracking-tighter">Fast Delivery</h4>
-              <p className="text-xs text-gray-500 font-bold">Nationwide in Nigeria</p>
-            </div>
-          </div>
-          <div className="p-8 flex items-center gap-4 hover:bg-gray-50 transition group">
-            <div className="bg-green-50 p-3 rounded-2xl text-green-600 group-hover:scale-110 transition">
-              <ShieldCheck size={32} />
-            </div>
-            <div>
-              <h4 className="font-black text-gray-900 uppercase tracking-tighter">Tested Units</h4>
-              <p className="text-xs text-gray-500 font-bold">100% Quality Guaranteed</p>
-            </div>
-          </div>
-          <div className="p-8 flex items-center gap-4 hover:bg-gray-50 transition group">
-            <div className="bg-orange-50 p-3 rounded-2xl text-orange-500 group-hover:scale-110 transition">
-              <Zap size={32} />
-            </div>
-            <div>
-              <h4 className="font-black text-gray-900 uppercase tracking-tighter">Best Prices</h4>
-              <p className="text-xs text-gray-500 font-bold">Unbeatable Value</p>
-            </div>
-          </div>
-          <div className="p-8 flex items-center gap-4 hover:bg-gray-50 transition group">
-            <div className="bg-purple-50 p-3 rounded-2xl text-purple-600 group-hover:scale-110 transition">
-              <MessageCircle size={32} />
-            </div>
-            <div>
-              <h4 className="font-black text-gray-900 uppercase tracking-tighter">24/7 Support</h4>
-              <p className="text-xs text-gray-500 font-bold">Expert Help via WhatsApp</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Sliding Product Panels by Category */}
       <div className="space-y-16 md:space-y-24">
