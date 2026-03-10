@@ -1,8 +1,10 @@
 
-import React, { useRef } from 'react';
-import { X, CheckCircle, MessageCircle } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { X, CheckCircle, MessageCircle, Download, Loader2 } from 'lucide-react';
 import { formatPrice, WHATSAPP_NUMBER } from '../constants';
 import { CartItem } from '../types';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 interface InvoiceModalProps {
   order: {
@@ -20,6 +22,7 @@ interface InvoiceModalProps {
 
 const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
   const invoiceRef = useRef<HTMLDivElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const openWhatsApp = () => {
     let message = `*NEW ORDER FROM WONDERFUL AUTOS AND TECH*%0A%0A`;
@@ -31,140 +34,230 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
 
+  const downloadPDF = async () => {
+    if (!invoiceRef.current) return;
+
+    try {
+      setIsDownloading(true);
+      const canvas = await html2canvas(invoiceRef.current, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff'
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`Wonderful_Autos_Invoice_${order.id}.pdf`);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-      <div className="bg-white w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300 flex flex-col max-h-[95vh]">
-        {/* Success Header */}
-        <div className="bg-green-600 p-8 text-white text-center relative">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-2 md:p-4 bg-black/80 backdrop-blur-xl transition-all">
+      <div className="bg-white w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-500 flex flex-col max-h-[98vh] border border-white/20">
+        {/* Compact Success Header */}
+        <div className="bg-green-600 px-6 py-4 md:py-6 text-white text-center relative flex items-center justify-center gap-4">
+          <div className="bg-white/20 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0">
+            <CheckCircle size={24} className="md:w-8 md:h-8" />
+          </div>
+          <div className="text-left">
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight leading-none">Order Successful!</h2>
+            <p className="text-green-100 text-xs font-bold mt-1 opacity-90">Recorded in our system.</p>
+          </div>
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition"
+            className="absolute top-1/2 -translate-y-1/2 right-4 p-2 hover:bg-white/20 rounded-full transition"
           >
             <X size={24} />
           </button>
-          <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle size={40} />
-          </div>
-          <h2 className="text-3xl font-black uppercase tracking-tight">Order Successful!</h2>
-          <p className="text-green-100 font-bold mt-2">Your order has been recorded and sent to our team.</p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="p-6 bg-gray-50 border-b border-gray-100 flex flex-col gap-4">
+        {/* Improved Actions Layout */}
+        <div className="p-4 md:p-6 bg-gray-50 border-b border-gray-100 flex flex-col sm:flex-row gap-3 md:gap-4 items-center">
           <button
             onClick={openWhatsApp}
-            className="w-full bg-green-600 text-white py-5 px-6 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 transition active:scale-95 text-xl"
+            className="w-full sm:flex-1 bg-green-600 text-white py-4 px-6 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 transition active:scale-95 text-lg"
           >
-            <MessageCircle size={24} /> Complete on WhatsApp
+            <MessageCircle size={22} /> WhatsApp Business
+          </button>
+
+          <button
+            onClick={downloadPDF}
+            disabled={isDownloading}
+            className={`w-full sm:flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-black transition active:scale-95 text-lg shadow-lg ${isDownloading
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-tech-blue text-white hover:bg-blue-900 shadow-tech-blue/20'
+              }`}
+          >
+            {isDownloading ? (
+              <>
+                <Loader2 size={22} className="animate-spin" />
+                <span>Generating...</span>
+              </>
+            ) : (
+              <>
+                <Download size={22} />
+                <span>Download Invoice (PDF)</span>
+              </>
+            )}
           </button>
         </div>
 
-        {/* Invoice Preview (Hidden from view but used for PDF generation) */}
-        <div className="flex-grow overflow-y-auto p-8 bg-gray-100">
-          <div className="text-center mb-4">
-            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Invoice Preview</p>
+        {/* Blatant Invoice Preview Area */}
+        <div className="flex-grow overflow-y-auto p-4 md:p-12 bg-gray-200/50 flex flex-col items-center gap-8">
+          <div className="w-full max-w-[210mm] text-center">
+            <span className="inline-block px-4 py-1 bg-gray-300/50 rounded-full text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mb-4">Official Document Preview</span>
           </div>
 
           <div
             ref={invoiceRef}
-            className="bg-white p-10 shadow-sm mx-auto max-w-[210mm] text-gray-800 font-sans"
+            className="bg-white p-6 md:p-16 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mx-auto w-full max-w-[210mm] text-gray-800 font-sans border border-gray-100 flex flex-col"
             style={{ minHeight: '297mm' }}
           >
             {/* Invoice Header */}
-            <div className="flex justify-between items-start border-b-4 border-tech-blue pb-8 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start border-b-8 border-tech-blue pb-10 mb-12 gap-6">
               <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-12 h-12 bg-tech-blue rounded flex items-center justify-center">
-                    <span className="text-white font-black text-2xl italic">WAT</span>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 bg-tech-blue rounded-xl flex items-center justify-center shadow-lg shadow-tech-blue/20">
+                    <span className="text-white font-black text-3xl italic">WAT</span>
                   </div>
-                  <span className="text-tech-blue font-black text-2xl tracking-tighter uppercase">Wonderful Autos and Tech</span>
+                  <div>
+                    <span className="text-tech-blue font-black text-3xl tracking-tighter uppercase block leading-none">Wonderful Autos</span>
+                    <span className="text-tech-blue font-black text-3xl tracking-tighter uppercase block leading-none opacity-80">and Tech</span>
+                  </div>
                 </div>
-                <p className="text-sm font-bold text-gray-500">Premium Laptops & Tech Solutions</p>
-                <p className="text-xs text-gray-400 mt-1">Lagos | Osogbo | Ibadan | Nationwide Delivery</p>
+                <div className="space-y-1">
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Global Solutions Provider</p>
+                  <p className="text-sm font-bold text-gray-600">Lagos | Osogbo | Ibadan | Nigeria</p>
+                  <p className="text-sm font-black text-tech-blue underline underline-offset-4">wonderfulautosandtech@gmail.com</p>
+                </div>
               </div>
-              <div className="text-right">
-                <h1 className="text-4xl font-black text-tech-blue uppercase tracking-tighter mb-2">Invoice</h1>
-                <p className="text-sm font-bold">Order ID: <span className="text-gray-900">{order.id}</span></p>
-                <p className="text-sm font-bold">Date: <span className="text-gray-900">{new Date(order.createdAt).toLocaleDateString()}</span></p>
-              </div>
-            </div>
-
-            {/* Customer & Payment Info */}
-            <div className="grid grid-cols-2 gap-12 mb-12">
-              <div>
-                <h3 className="text-xs font-black text-tech-blue uppercase tracking-widest mb-4 border-b pb-1">Bill To:</h3>
-                <p className="font-black text-lg text-gray-900 mb-1">{order.customerName}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">{order.customerAddress}</p>
-                <p className="text-sm font-bold text-gray-900 mt-2">Tel: {order.customerPhone}</p>
-              </div>
-              <div>
-                <h3 className="text-xs font-black text-tech-blue uppercase tracking-widest mb-4 border-b pb-1">Payment Details:</h3>
-                <p className="text-sm font-bold text-gray-600 mb-1">Method: <span className="text-gray-900">{order.paymentMethod}</span></p>
-                <p className="text-sm font-bold text-gray-600">Status: <span className="text-orange-600 uppercase">Pending Verification</span></p>
+              <div className="text-left md:text-right w-full md:w-auto">
+                <h1 className="text-5xl md:text-7xl font-black text-gray-200 uppercase tracking-tighter -mt-2 mb-4 leading-none select-none">INVOICE</h1>
+                <div className="space-y-1">
+                  <p className="text-sm font-black text-gray-400 uppercase">Document Number</p>
+                  <p className="text-xl font-black text-gray-900">#INV-{order.id.slice(-8).toUpperCase()}</p>
+                  <p className="text-sm font-bold text-gray-500 mt-2">Issued: {new Date(order.createdAt).toLocaleDateString()}</p>
+                </div>
               </div>
             </div>
 
-            {/* Items Table */}
-            <table className="w-full mb-12">
-              <thead>
-                <tr className="bg-tech-blue text-white">
-                  <th className="py-3 px-4 text-left text-xs font-black uppercase tracking-widest">Item Description</th>
-                  <th className="py-3 px-4 text-center text-xs font-black uppercase tracking-widest">Qty</th>
-                  <th className="py-3 px-4 text-right text-xs font-black uppercase tracking-widest">Price</th>
-                  <th className="py-3 px-4 text-right text-xs font-black uppercase tracking-widest">Total</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
+            {/* Customer & Traceability Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 px-4 py-8 bg-gray-50 rounded-[2rem] border border-gray-100">
+              <div>
+                <h3 className="text-[10px] font-black text-tech-blue uppercase tracking-[0.3em] mb-4">Customer Details</h3>
+                <p className="font-black text-2xl text-gray-900 mb-2">{order.customerName}</p>
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-500 font-bold leading-relaxed">{order.customerAddress}</p>
+                  <p className="text-lg font-black text-gray-900 mt-4 tabular-nums">{order.customerPhone}</p>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-[10px] font-black text-tech-blue uppercase tracking-[0.3em] mb-4">Transaction Meta</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center bg-white p-3 rounded-xl border border-gray-100">
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Payment</span>
+                    <span className="text-xs font-black text-gray-900 uppercase">{order.paymentMethod}</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-white p-3 rounded-xl border border-gray-100">
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Status</span>
+                    <span className="text-[10px] font-black text-orange-600 bg-orange-50 px-3 py-1 rounded-full border border-orange-100 uppercase tracking-widest italic">Awaiting Verification</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Premium Table Design */}
+            <div className="mb-16">
+              <div className="grid grid-cols-12 bg-gray-900 text-white rounded-t-2xl px-6 py-4">
+                <div className="col-span-6 text-[10px] font-black uppercase tracking-widest">Specifications & Item</div>
+                <div className="col-span-2 text-center text-[10px] font-black uppercase tracking-widest">Qty</div>
+                <div className="col-span-2 text-right text-[10px] font-black uppercase tracking-widest">Unit Price</div>
+                <div className="col-span-2 text-right text-[10px] font-black uppercase tracking-widest text-blue-400">Total</div>
+              </div>
+              <div className="border-x border-b border-gray-100 rounded-b-2xl overflow-hidden divide-y divide-gray-50">
                 {order.items.map((item, idx) => (
-                  <tr key={idx}>
-                    <td className="py-4 px-4">
-                      <p className="font-black text-gray-900">{item.name}</p>
-                      <p className="text-[10px] text-gray-400 uppercase font-bold">{item.specs}</p>
-                    </td>
-                    <td className="py-4 px-4 text-center font-bold">{item.quantity}</td>
-                    <td className="py-4 px-4 text-right font-bold">{formatPrice(item.price)}</td>
-                    <td className="py-4 px-4 text-right font-black text-tech-blue">{formatPrice(item.price * item.quantity)}</td>
-                  </tr>
+                  <div key={idx} className="grid grid-cols-12 px-6 py-8 items-center hover:bg-gray-50/50 transition-colors">
+                    <div className="col-span-6 pr-4">
+                      <p className="font-black text-gray-900 text-lg leading-tight mb-2 uppercase">{item.name}</p>
+                      <p className="text-[11px] text-gray-400 font-bold leading-relaxed max-w-xs">{item.specs}</p>
+                    </div>
+                    <div className="col-span-2 text-center font-black text-gray-900 tabular-nums">×{item.quantity}</div>
+                    <div className="col-span-2 text-right font-bold text-gray-500 tabular-nums">{formatPrice(item.price)}</div>
+                    <div className="col-span-2 text-right font-black text-tech-blue text-lg tabular-nums">{formatPrice(item.price * item.quantity)}</div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
 
-            {/* Totals */}
-            <div className="flex justify-end mb-12">
-              <div className="w-full max-w-xs space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500 font-bold uppercase">Subtotal</span>
-                  <span className="font-black text-gray-900">{formatPrice(order.totalAmount - (order.totalAmount > 10000 ? 5000 : 0))}</span>
+            {/* Totals & Security Note */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-auto">
+              <div className="bg-blue-50/50 p-8 rounded-[2rem] border border-blue-100/50 self-start">
+                <h4 className="text-[10px] font-black text-tech-blue uppercase tracking-widest mb-4">Official Guarantee</h4>
+                <p className="text-xs text-blue-900/60 font-bold italic leading-relaxed">
+                  "We certify that this invoice represents genuine premium stock. Quality is our contract with you. Welcome to the Wonderful community."
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center text-sm px-4">
+                  <span className="text-gray-400 font-black uppercase tracking-widest">Net Subtotal</span>
+                  <span className="font-black text-gray-900 tabular-nums">{formatPrice(order.totalAmount - (order.totalAmount > 10000 ? 5000 : 0))}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500 font-bold uppercase">Shipping</span>
-                  <span className="font-black text-gray-900">{formatPrice(order.totalAmount > 10000 ? 5000 : 0)}</span>
+                <div className="flex justify-between items-center text-sm px-4">
+                  <span className="text-gray-400 font-black uppercase tracking-widest">Shipping & Handling</span>
+                  <span className="font-bold text-gray-900 tabular-nums">+{formatPrice(order.totalAmount > 10000 ? 5000 : 0)}</span>
                 </div>
-                <div className="flex justify-between text-xl border-t-4 border-tech-blue pt-3">
-                  <span className="text-tech-blue font-black uppercase tracking-tighter">Total Amount</span>
-                  <span className="text-tech-blue font-black">{formatPrice(order.totalAmount)}</span>
+                <div className="bg-tech-blue p-6 rounded-[2rem] flex justify-between items-center shadow-xl shadow-tech-blue/20">
+                  <span className="text-white font-black uppercase tracking-tighter text-sm">Amount Due</span>
+                  <span className="text-white font-black text-3xl tabular-nums tracking-tighter">{formatPrice(order.totalAmount)}</span>
                 </div>
               </div>
             </div>
 
-            {/* Footer Note */}
-            <div className="mt-auto pt-12 border-t border-gray-100 text-center">
-              <p className="text-sm font-black text-gray-900 mb-2 italic">Thank you for choosing Wonderful Autos and Tech!</p>
-              <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-relaxed">
-                Please keep this invoice for your records. Delivery will be processed within 24-48 hours after payment verification.
-                For support, contact us on WhatsApp: +234 706 475 7296.
-              </p>
+            {/* Signature & System Footer */}
+            <div className="mt-20 pt-10 border-t-2 border-dashed border-gray-200">
+              <div className="flex flex-col md:flex-row justify-between items-end gap-10">
+                <div className="text-left">
+                  <div className="w-40 h-10 border-b-2 border-gray-900 mb-2 relative">
+                    <span className="absolute -top-4 left-2 font-dancing text-gray-300 transform -rotate-6 select-none opacity-50">Authorized Official</span>
+                  </div>
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Validation Signature</p>
+                </div>
+                <div className="text-right flex-grow">
+                  <p className="text-sm font-black text-gray-900 mb-2 italic">Building Trust, For Over a Decade.</p>
+                  <p className="text-[10px] text-gray-400 font-bold leading-relaxed max-w-sm ml-auto">
+                    Wonderful Autos and Tech Limited. Lagos, Osogbo, Ibadan. <br />
+                    Orders are processed within 24-48 hours. WhatsApp Support: +234 706 475 7296.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="p-6 bg-white text-center">
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-tech-blue font-black uppercase text-xs tracking-widest transition"
-          >
-            Close and Return to Shop
-          </button>
+          <div className="mb-8 p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white max-w-md w-full text-center">
+            <p className="text-xs text-gray-500 font-bold mb-4 italic">Please verify the details above before downloading or proceeding to WhatsApp.</p>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-tech-blue font-black uppercase text-[10px] tracking-[0.3em] transition underline underline-offset-8 decoration-gray-200 hover:decoration-tech-blue"
+            >
+              Return to Shop and Continue
+            </button>
+          </div>
         </div>
       </div>
     </div>
