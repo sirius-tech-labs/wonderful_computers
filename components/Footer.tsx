@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
           <ul className="space-y-4 text-blue-100 text-sm">
             <li className="flex items-center gap-3"><MapPin size={18} className="text-blue-300" /> <span>Suite 52,1 Adepele(Blue building), computer village, Ikeja 100212</span></li>
             <li className="flex items-center gap-3"><Phone size={18} className="text-blue-300" /> <span>+234 909 008 5555</span></li>
-            <li className="flex items-center gap-3"><Mail size={18} className="text-blue-300" /> <span>sales@wonderfulautosandtech.com</span></li>
+            <li className="flex items-center gap-3"><Mail size={18} className="text-blue-300" /> <span>wonderfulautosandtech@gmail.com</span></li>
           </ul>
         </div>
 
