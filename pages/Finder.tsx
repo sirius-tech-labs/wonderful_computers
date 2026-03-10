@@ -97,7 +97,7 @@ const Finder: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'bot',
-      text: 'Hello! 👋 I\'m your Wonderful Computers AI Laptop Advisor. Tell me what you need and I\'ll find the perfect laptop from our store — with prices in Naira and nationwide delivery across Nigeria!',
+      text: 'Hello! 👋 I\'m your Wonderful Autos and Tech AI Assistant. Tell me what you need and I\'ll find the perfect solution from our store — with nationwide delivery across Nigeria! What are you looking for today?',
     }
   ]);
 
@@ -147,7 +147,7 @@ const Finder: React.FC = () => {
               <h2 className="text-lg font-black tracking-tight">AI Laptop Advisor</h2>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <p className="text-xs text-blue-200 font-bold">Online — Powered by Gemini AI</p>
+                <p className="text-gray-400 font-bold">Wonderful Autos and Tech | Lagos, Nigeria</p>
               </div>
             </div>
           </div>

@@ -46,8 +46,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Load initial IDs from localStorage
   useEffect(() => {
-    const savedRecentIds = localStorage.getItem('wonderful_recent_ids');
-    const savedWishlistIds = localStorage.getItem('wonderful_wishlist_ids');
+    const savedRecentIds = localStorage.getItem('wonderful_autos_recent_ids');
+    const savedWishlistIds = localStorage.getItem('wonderful_autos_wishlist_ids');
 
     if (inventory.length > 0) {
       if (savedRecentIds) {
@@ -99,7 +99,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     try {
-      localStorage.setItem('wonderful_cart', JSON.stringify(cart));
+      localStorage.setItem('wonderful_autos_cart', JSON.stringify(cart));
     } catch (e) {
       console.error('Failed to save cart to localStorage:', e);
     }
@@ -108,7 +108,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const ids = recentlyViewed.map(l => l.id);
-      localStorage.setItem('wonderful_recent_ids', JSON.stringify(ids));
+      localStorage.setItem('wonderful_autos_recent_ids', JSON.stringify(ids));
     } catch (e) {
       console.error('Failed to save recently viewed IDs to localStorage:', e);
     }
@@ -117,7 +117,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const ids = wishlist.map(l => l.id);
-      localStorage.setItem('wonderful_wishlist_ids', JSON.stringify(ids));
+      localStorage.setItem('wonderful_autos_wishlist_ids', JSON.stringify(ids));
     } catch (e) {
       console.error('Failed to save wishlist IDs to localStorage:', e);
     }

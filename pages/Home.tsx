@@ -108,7 +108,7 @@ const Home: React.FC = () => {
   return (
     <div className="space-y-12 md:space-y-24 pb-20 overflow-x-hidden">
       <Helmet>
-        <title>Wonderful Computers | Premium Tech Store Nigeria</title>
+        <title>Wonderful Autos and Tech | Premium Tech Store Nigeria</title>
         <meta name="description" content="Buy affordable, high-quality UK-used and new laptops in Nigeria. Nationwide delivery, tested hardware, and trusted service in Ikeja Computer Village." />
       </Helmet>
       {/* Hero Section */}
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
               </h1>
               <p className="text-lg md:text-2xl text-blue-100 mb-8 md:mb-12 font-medium leading-relaxed max-w-xl">
                 Grade A+ UK-Used machines starting from <span className="text-white font-black underline">₦165,000</span>. <br className="hidden md:block" />
-                Tested by Wonderful Computers Engineers. 12-Months Support.
+                Tested by Wonderful Autos and Tech Engineers. 12-Months Support.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-5">
                 <Link to="/shop" className="bg-white text-tech-blue px-8 md:px-12 py-5 md:py-6 rounded-2xl font-black text-center hover:bg-gray-100 transition shadow-2xl flex items-center justify-center gap-2 group text-base md:text-lg">
@@ -236,7 +236,7 @@ const Home: React.FC = () => {
         <div className="bg-tech-blue text-white rounded-[3rem] md:rounded-[4rem] p-8 md:p-24 overflow-hidden relative shadow-2xl">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-6xl font-black mb-8 md:mb-10 leading-[1.1] tracking-tighter">Why Thousands Choose Wonderful Computers</h2>
+              <h2 className="text-3xl md:text-6xl font-black mb-8 md:mb-10 leading-[1.1] tracking-tighter">Why Thousands Choose Wonderful Autos and Tech</h2>
               <div className="space-y-6 md:space-y-8">
                 <div className="flex gap-4 md:gap-6">
                   <div className="bg-blue-500/20 p-3 md:p-4 rounded-2xl md:rounded-3xl h-fit border border-white/5 shadow-inner flex-shrink-0"><ShieldCheck className="text-blue-400" size={28} /></div>

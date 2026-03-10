@@ -22,7 +22,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
   const invoiceRef = useRef<HTMLDivElement>(null);
 
   const openWhatsApp = () => {
-    let message = `*NEW ORDER FROM WONDERFUL COMPUTERS*%0A%0A`;
+    let message = `*NEW ORDER FROM WONDERFUL AUTOS AND TECH*%0A%0A`;
     message += `*Order ID:* ${order.id}%0A`;
     message += `*Name:* ${order.customerName}%0A`;
     message += `*Total:* ${formatPrice(order.totalAmount)}%0A%0A`;
@@ -75,9 +75,9 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-12 h-12 bg-tech-blue rounded flex items-center justify-center">
-                    <span className="text-white font-black text-2xl italic">WC</span>
+                    <span className="text-white font-black text-2xl italic">WAT</span>
                   </div>
-                  <span className="text-tech-blue font-black text-2xl tracking-tighter uppercase">Wonderful Computers</span>
+                  <span className="text-tech-blue font-black text-2xl tracking-tighter uppercase">Wonderful Autos and Tech</span>
                 </div>
                 <p className="text-sm font-bold text-gray-500">Premium Laptops & Tech Solutions</p>
                 <p className="text-xs text-gray-400 mt-1">Lagos, Nigeria | Nationwide Delivery</p>
@@ -149,7 +149,7 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) => {
 
             {/* Footer Note */}
             <div className="mt-auto pt-12 border-t border-gray-100 text-center">
-              <p className="text-sm font-black text-gray-900 mb-2 italic">Thank you for choosing Wonderful Computers!</p>
+              <p className="text-sm font-black text-gray-900 mb-2 italic">Thank you for choosing Wonderful Autos and Tech!</p>
               <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-relaxed">
                 Please keep this invoice for your records. Delivery will be processed within 24-48 hours after payment verification.
                 For support, contact us on WhatsApp: +234 909 008 5555.

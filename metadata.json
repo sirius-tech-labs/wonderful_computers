@@ -1,6 +1,6 @@
 {
-  "name": "Wonderful Computers",
-  "description": "A high-trust e-commerce platform for Wonderful Computers, specializing in affordable UK-used and new laptops with nationwide delivery across Nigeria. Features a Gemini-powered laptop finder chatbot, persistent cart, and WhatsApp integration.",
+  "name": "Wonderful Autos and Tech",
+  "description": "A high-trust e-commerce platform for Wonderful Autos and Tech, specializing in autos and high-quality tech solutions with nationwide delivery across Nigeria. Features a Gemini-powered personal advisor, persistent cart, and WhatsApp integration.",
   "requestFramePermissions": [
     "camera",
     "microphone"

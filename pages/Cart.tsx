@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `*NEW ORDER FROM WONDERFUL COMPUTERS*%0A%0A`;
+    let message = `*NEW ORDER FROM WONDERFUL AUTOS AND TECH*%0A%0A`;
     message += `*--- CUSTOMER INFO ---*%0A`;
     message += `*Name:* ${formData.name}%0A`;
     message += `*Address:* ${formData.fullAddress}%0A`;

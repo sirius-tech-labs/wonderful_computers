@@ -10,12 +10,12 @@ const Footer: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-6">
             <div className="w-10 h-10 bg-white rounded flex items-center justify-center">
-              <span className="text-tech-blue font-black text-xl italic">WC</span>
+              <span className="text-tech-blue font-black text-xl italic">WAT</span>
             </div>
-            <span className="text-white font-extrabold text-xl tracking-tight">Wonderful Computers</span>
+            <span className="text-white font-extrabold text-xl tracking-tight">Wonderful Autos and Tech</span>
           </div>
           <p className="text-blue-100 text-sm leading-relaxed mb-6">
-            Premium Nigerian electronics retailer specializing in affordable UK-used and new laptops. We prioritize reliability, trust, and exceptional nationwide delivery.
+            Premium Nigerian retailer specializing in autos and high-quality tech solutions. We prioritize reliability, trust, and exceptional nationwide delivery.
           </p>
           <div className="flex gap-4">
             <a href="#" className="p-2 bg-blue-900/50 rounded-lg hover:bg-blue-800 transition"><Facebook size={18} /></a>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
           <ul className="space-y-4 text-blue-100 text-sm">
             <li className="flex items-center gap-3"><MapPin size={18} className="text-blue-300" /> <span>Suite 52,1 Adepele(Blue building), computer village, Ikeja 100212</span></li>
             <li className="flex items-center gap-3"><Phone size={18} className="text-blue-300" /> <span>+234 909 008 5555</span></li>
-            <li className="flex items-center gap-3"><Mail size={18} className="text-blue-300" /> <span>sales@wonderfulcomputers.com.ng</span></li>
+            <li className="flex items-center gap-3"><Mail size={18} className="text-blue-300" /> <span>sales@wonderfulautos.com.ng</span></li>
           </ul>
         </div>
 
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pt-10 border-t border-blue-800/50 flex flex-col md:flex-row justify-between items-center gap-4 text-blue-300 text-xs">
-        <p>&copy; {new Date().getFullYear()} Wonderful Computers Nigeria. Trusted Laptop Retailer. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Wonderful Autos and Tech Nigeria. Trusted Retailer. All Rights Reserved.</p>
       </div>
     </footer>
   );

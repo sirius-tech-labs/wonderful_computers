@@ -55,7 +55,7 @@ const UserOrders: React.FC = () => {
                 console.error('Error fetching orders:', err);
                 // Fallback: try local storage
                 try {
-                    const saved = JSON.parse(localStorage.getItem('wonderful_orders') || '[]');
+                    const saved = JSON.parse(localStorage.getItem('wonderful_autos_orders') || '[]');
                     const myOrders = saved.filter((o: Order) =>
                         o.customerEmail?.toLowerCase() === user.email?.toLowerCase()
                     );

@@ -49,7 +49,7 @@ const Shop: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <Helmet>
-        <title>Shop Laptops | Wonderful Computers Nigeria Catalog</title>
+        <title>Shop | Wonderful Autos and Tech Nigeria Catalog</title>
         <meta name="description" content="Browse our wide range of UK-used and new laptops. Filter by category: Student, Business, Gaming, and more. Best prices in Nigeria." />
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
@@ -111,8 +111,8 @@ const Shop: React.FC = () => {
                     setIsFilterOpen(false); // Contract the drawdown
                   }}
                   className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold transition ${activeCategory === cat
-                      ? 'bg-tech-blue text-white shadow-md'
-                      : 'text-gray-600 hover:bg-gray-50'
+                    ? 'bg-tech-blue text-white shadow-md'
+                    : 'text-gray-600 hover:bg-gray-50'
                     }`}
                 >
                   {cat}

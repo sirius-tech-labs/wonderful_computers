@@ -58,9 +58,9 @@ const Header: React.FC = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 flex-shrink-0">
               <div className="w-10 h-10 bg-tech-blue rounded flex items-center justify-center">
-                <span className="text-white font-black text-xl italic">WC</span>
+                <span className="text-white font-black text-xl italic drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]">WAT</span>
               </div>
-              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Wonderful Computers</span>
+              <span className="font-extrabold text-xl tracking-tight hidden lg:block text-tech-blue">Wonderful Autos and Tech</span>
             </Link>
 
             {/* Global Search Bar */}
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
                       />
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-tech-blue flex items-center justify-center text-white font-black text-sm">
-                        {(user.email || 'U')[0].toUpperCase()}
+                        WAT
                       </div>
                     )}
                     {isAdmin && (
