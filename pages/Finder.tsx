@@ -233,7 +233,7 @@ const Finder: React.FC = () => {
             </button>
           </div>
           <p className="text-[10px] text-gray-400 mt-2 text-center uppercase tracking-widest font-bold flex items-center justify-center gap-1">
-            <Zap size={10} className="text-tech-blue" /> AI-Powered · Powered by Wonderful Computers
+            <Zap size={10} className="text-tech-blue" /> AI-Powered · Powered by Wonderful Autos and Tech
           </p>
         </div>
       </div>

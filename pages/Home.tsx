@@ -273,7 +273,7 @@ const Home: React.FC = () => {
                     <div className="w-10 h-10 md:w-14 md:h-14 bg-blue-50 rounded-full flex items-center justify-center font-black text-tech-blue text-base md:text-xl border-2 border-white shadow-sm">EE</div>
                     <div>
                       <p className="font-black text-tech-blue not-italic text-base md:text-lg">Engr. Emeka</p>
-                      <p className="text-[9px] md:text-[10px] uppercase font-black text-gray-400 tracking-widest">Chief Tech, Wonderful Computers</p>
+                      <p className="text-[9px] md:text-[10px] uppercase font-black text-gray-400 tracking-widest">Chief Tech, Wonderful Autos and Tech</p>
                     </div>
                   </div>
                 </div>
