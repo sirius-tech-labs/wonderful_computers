@@ -71,19 +71,21 @@ const Footer: React.FC = () => {
           </ul>
         </div>
 
-        <div>
-          <h4 className="font-bold text-lg mb-6">Newsletter</h4>
-          <p className="text-blue-100 text-sm mb-4">Get the latest laptop deals and tech tips in your inbox.</p>
-          <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="w-full bg-blue-900/50 border border-blue-800 rounded-xl py-3 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all"
-            />
-            <button className="w-full bg-white text-tech-blue font-black py-3 rounded-xl text-sm hover:bg-blue-50 transition shadow-lg">
-              Subscribe Now
-            </button>
-          </form>
+        <div className="flex flex-col justify-center">
+          <div className="bg-blue-900/30 p-8 rounded-[2rem] border border-blue-800/50 relative overflow-hidden group">
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-300/10 rounded-full blur-2xl group-hover:bg-blue-300/20 transition-colors" />
+            <h4 className="font-black text-blue-300 text-xs uppercase tracking-[0.2em] mb-4">Words of Wisdom</h4>
+            <p className="text-lg font-bold italic leading-relaxed text-white mb-6 relative z-10">
+              "There is plenty of room at the top because very few people care to travel beyond the average route."
+            </p>
+            <div className="flex items-center gap-3 border-t border-blue-800/50 pt-4">
+              <div className="w-8 h-8 rounded-full bg-blue-300/20 flex items-center justify-center text-[10px] font-black">NA</div>
+              <div>
+                <p className="font-black text-xs text-white">Nnamdi Azikiwe</p>
+                <p className="text-[10px] text-blue-300 font-bold uppercase tracking-widest">First President of Nigeria</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
