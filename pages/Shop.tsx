@@ -7,6 +7,7 @@ import { Category } from '../types';
 import ProductCard from '../components/ProductCard';
 import { Filter, Search as SearchIcon, X, History } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { ProductCardSkeleton } from '../components/LoadingSkeleton';
 
 const Shop: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +17,7 @@ const Shop: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [sortBy, setSortBy] = useState<'default' | 'priceAsc' | 'priceDesc'>('default');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const { recentlyViewed, inventory } = useCart();
+  const { recentlyViewed, inventory, isInventoryLoading } = useCart();
 
   useEffect(() => {
     const q = searchParams.get('q');
@@ -156,7 +157,11 @@ const Shop: React.FC = () => {
 
         {/* Product Grid */}
         <div className="flex-grow">
-          {filteredLaptops.length > 0 ? (
+          {isInventoryLoading && inventory.length <= 13 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map(i => <ProductCardSkeleton key={i} />)}
+            </div>
+          ) : filteredLaptops.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredLaptops.map(laptop => (
                 <ProductCard key={laptop.id} laptop={laptop} />

@@ -7,6 +7,7 @@ import { LAPTOPS, TESTIMONIALS, formatPrice } from '../constants';
 import { Category } from '../types';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
+import { CategoryCarouselSkeleton, SidebarSkeleton } from '../components/LoadingSkeleton';
 
 const CategoryCarousel: React.FC<{ title: string; category: Category }> = ({ title, category }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ const CategoryCarousel: React.FC<{ title: string; category: Category }> = ({ tit
 
   const filteredLaptops = inventory.filter(l => l.category === category);
 
-  if (filteredLaptops.length === 0) return null;
+  if (inventory.length === 0 && !isInventoryLoading) return null;
 
   return (
     <section className="relative group/carousel">
@@ -93,7 +94,7 @@ const CategoryCarousel: React.FC<{ title: string; category: Category }> = ({ tit
 };
 
 const Home: React.FC = () => {
-  const { inventory } = useCart();
+  const { inventory, isInventoryLoading } = useCart();
   const categories = [
     { title: "Student Laptops", cat: Category.STUDENT },
     { title: "Business & Work", cat: Category.BUSINESS },
@@ -154,29 +155,36 @@ const Home: React.FC = () => {
               <h4 className="text-white font-black text-xl mb-6 flex items-center gap-2">
                 <Zap size={24} className="text-yellow-400" /> Hot Today
               </h4>
-              <div className="space-y-5">
-                {hotToday.map(l => (
-                  <Link to={`/product/${l.id}`} key={l.id} className="flex gap-4 items-center bg-white/5 p-4 rounded-2xl border border-white/5 hover:bg-white/10 transition group">
-                    <img
-                      src={l.image || undefined}
-                      loading="lazy"
-                      className="w-16 h-16 rounded-xl object-cover group-hover:scale-105 transition"
-                      alt={l.name}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=1000";
-                      }}
-                    />
-                    <div>
-                      <p className="text-white font-bold text-sm leading-tight mb-1">{l.name}</p>
-                      <p className="text-blue-300 font-black">{formatPrice(l.price)}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-8 p-6 bg-yellow-400 rounded-2xl text-tech-blue text-center">
-                <p className="font-black text-xs tracking-widest mb-1">PROMO ENDS IN:</p>
-                <p className="text-3xl font-black tabular-nums tracking-widest">04:12:09</p>
-              </div>
+
+              {isInventoryLoading && inventory.length <= 13 ? (
+                <SidebarSkeleton />
+              ) : (
+                <>
+                  <div className="space-y-5">
+                    {hotToday.map(l => (
+                      <Link to={`/product/${l.id}`} key={l.id} className="flex gap-4 items-center bg-white/5 p-4 rounded-2xl border border-white/5 hover:bg-white/10 transition group">
+                        <img
+                          src={l.image || undefined}
+                          loading="lazy"
+                          className="w-16 h-16 rounded-xl object-cover group-hover:scale-105 transition"
+                          alt={l.name}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=1000";
+                          }}
+                        />
+                        <div>
+                          <p className="text-white font-bold text-sm leading-tight mb-1">{l.name}</p>
+                          <p className="text-blue-300 font-black">{formatPrice(l.price)}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-8 p-6 bg-yellow-400 rounded-2xl text-tech-blue text-center">
+                    <p className="font-black text-xs tracking-widest mb-1">PROMO ENDS IN:</p>
+                    <p className="text-3xl font-black tabular-nums tracking-widest">04:12:09</p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -185,9 +193,16 @@ const Home: React.FC = () => {
 
       {/* Sliding Product Panels by Category */}
       <div className="space-y-16 md:space-y-24">
-        {categories.map((cat, idx) => (
-          <CategoryCarousel key={idx} title={cat.title} category={cat.cat} />
-        ))}
+        {isInventoryLoading && inventory.length <= 13 ? (
+          <>
+            <CategoryCarouselSkeleton />
+            <CategoryCarouselSkeleton />
+          </>
+        ) : (
+          categories.map((cat, idx) => (
+            <CategoryCarousel key={idx} title={cat.title} category={cat.cat} />
+          ))
+        )}
       </div>
 
       {/* Trust & Psychological Purchase Triggers Section */}
